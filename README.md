@@ -1,13 +1,9 @@
 # WeatherPI
 
-___
-
 This repository serves as a workspace.
 
 WeatherPI is a project that uses an Arduino Uno as the data collector, a RaspberryPi that serves as a base station,
 DHT22 sensors for the temperature + humidity, and NRF24L01 wireless modules for wireless communications.
-
-___
 
 ## Resources
 
@@ -18,8 +14,6 @@ ___
 - [Java Class Diagram (Image)](src/main/resources/WeatherPI.png)
 - [NRF24L01 + PA + LNA Datasheet (Link)](http://www.haoyuelectronics.com/Attachment/Mini-NRF24L01-SMD/nRF24L01P_Product_Specification_1_0.pdf)
 - [DHT22 Datasheet (Link)](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
-
-___
 
 ## Database
 
