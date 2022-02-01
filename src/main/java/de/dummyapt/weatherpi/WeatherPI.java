@@ -36,7 +36,7 @@ public final class WeatherPI extends Application {
         try {
             connection = Database.getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.getLocalizedMessage();
         }
     }
 
@@ -46,13 +46,13 @@ public final class WeatherPI extends Application {
         borderPane.setLeft(addVBox());
         borderPane.setCenter(addFlowPane());
         borderPane.setBottom(addVBoxBottom());
-        borderPane.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
+        borderPane.setOnMousePressed(ae -> {
+            xOffset = ae.getSceneX();
+            yOffset = ae.getSceneY();
         });
-        borderPane.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
+        borderPane.setOnMouseDragged(ae -> {
+            stage.setX(ae.getScreenX() - xOffset);
+            stage.setY(ae.getScreenY() - yOffset);
         });
         borderPane.setStyle("""
                 -fx-background-size: 1200 900;
@@ -80,7 +80,7 @@ public final class WeatherPI extends Application {
     }
 
     private HBox addHBox() {
-        var title = new Label("WeatherPI");
+        var title = new Label("WeatherPI Ich teste dich");
         title.setFont(new Font(26));
         title.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-base: rgb(0, 0, 0);");
 
@@ -119,6 +119,12 @@ public final class WeatherPI extends Application {
             VBox.setMargin(buttons[i], new Insets(0, 0, 0, 8));
             vBox.getChildren().add(buttons[i]);
             final int id = i;
+            final var style = """
+                    -fx-background-size: 1200 900;
+                    -fx-border-radius: 10 10 35 0;
+                    -fx-background-radius: 10 10 35 0;
+                    -fx-border-color: gold;
+                    -fx-background-color: rgb(50,50,50);""".indent(1);
             buttons[i].setOnAction(ae -> {
                 var location = getStations().get(id).location();
                 var temperature = getStations().get(id).temperature();
@@ -138,12 +144,7 @@ public final class WeatherPI extends Application {
                 flowPane.setVgap(4);
                 flowPane.setHgap(8);
                 flowPane.setPrefWrapLength(250);
-                flowPane.setStyle("""
-                        -fx-background-size: 1200 900;
-                        -fx-border-radius: 10 10 35 0;
-                        -fx-background-radius: 10 10 35 0;
-                        -fx-border-color: gold;
-                        -fx-background-color: rgb(50,50,50);""".indent(1));
+                flowPane.setStyle(style);
                 flowPane.getChildren().addAll(Arrays.asList(lblLocation, lblTemp, lblHumid));
                 borderPane.setCenter(flowPane);
             });
@@ -193,7 +194,7 @@ public final class WeatherPI extends Application {
             while (resultSet.next())
                 stations.add(new Station(resultSet.getInt("id"), resultSet.getString("location"), resultSet.getDouble("temperature"), resultSet.getDouble("humidity")));
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.getLocalizedMessage();
         }
         return stations;
     }
