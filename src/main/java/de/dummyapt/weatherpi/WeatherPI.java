@@ -80,7 +80,7 @@ public final class WeatherPI extends Application {
     }
 
     private HBox addHBox() {
-        var title = new Label("WeatherPI Ich teste dich");
+        var title = new Label("WeatherPI");
         title.setFont(new Font(26));
         title.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-base: rgb(0, 0, 0);");
 
