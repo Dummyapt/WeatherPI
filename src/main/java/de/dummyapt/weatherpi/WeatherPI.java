@@ -104,13 +104,13 @@ public final class WeatherPI extends Application {
             buttons[i] = new Button("Arduino " + (i + 1));
             VBox.setMargin(buttons[i], new Insets(0, 0, 0, 8));
             vBox.getChildren().add(buttons[i]);
-            final int id = i;
+            final var id = i;
             final var style = """
-                    -fx-background-size: 1200 900;
-                    -fx-border-radius: 10 10 35 0;
-                    -fx-background-radius: 10 10 35 0;
                     -fx-border-color: gold;
-                    -fx-background-color: rgb(50,50,50);""".indent(1);
+                    -fx-border-radius: 10;
+                    -fx-background-radius: 10;
+                    -fx-background-size: 1200 900;
+                    -fx-background-color: rgb(50,50,50);""";
             buttons[i].setOnAction(ae -> {
                 var location = getStations().get(id).location();
                 var temperature = getStations().get(id).temperature();
@@ -131,6 +131,7 @@ public final class WeatherPI extends Application {
                 flowPane.setHgap(8);
                 flowPane.setPrefWrapLength(250);
                 flowPane.setStyle(style);
+                flowPane.setAlignment(Pos.TOP_CENTER);
                 flowPane.getChildren().addAll(Arrays.asList(lblLocation, lblTemp, lblHumid));
                 borderPane.setCenter(flowPane);
             });
@@ -155,20 +156,19 @@ public final class WeatherPI extends Application {
     }
 
     private FlowPane addFlowPane() {
-        var label = new Label("Choose an Arduino");
-
         var flowPane = new FlowPane();
         flowPane.setPadding(new Insets(5, 0, 5, 0));
         flowPane.setVgap(4);
         flowPane.setHgap(8);
         flowPane.setPrefWrapLength(250);
         flowPane.setStyle("""
+                -fx-border-color: gold;
+                -fx-border-radius: 10;
+                -fx-background-radius: 10;
                 -fx-background-size: 1200 900;
-                -fx-border-radius: 10 10 35 0;
-                -fx-background-radius: 10 10 35 0;
-                -fx-border-color: gold;-fx-background-color: rgb(50,50,50);""");
+                -fx-background-color: rgb(50,50,50);""");
         flowPane.setAlignment(Pos.TOP_CENTER);
-        flowPane.getChildren().add(label);
+        flowPane.getChildren().add(new Label("Choose an Arduino"));
         return flowPane;
     }
 
