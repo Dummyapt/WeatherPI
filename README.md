@@ -15,6 +15,10 @@ DHT22 sensors for the temperature + humidity, and NRF24L01 wireless modules for 
 - [NRF24L01 + PA + LNA Datasheet (Link)](http://www.haoyuelectronics.com/Attachment/Mini-NRF24L01-SMD/nRF24L01P_Product_Specification_1_0.pdf)
 - [DHT22 Datasheet (Link)](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
 
+## Preview
+
+![Preview](src/main/resources/Preview.png)
+
 ## Database
 
 ![Database Diagram](src/main/resources/database.png)
