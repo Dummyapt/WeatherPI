@@ -59,14 +59,11 @@ public final class WeatherPI extends Application {
                 -fx-background-radius: 30;
                 -fx-border-radius: 30;
                 -fx-border-width:5;
-                -fx-border-color: #FC3D44;
-                -fx-font-size: 16pt;
-                -fx-font-family: "Arial";
-                -fx-base: rgb(132, 145, 47);
-                -fx-background: rgb(29, 39, 57);""");
+                -fx-border-color: #FC3D44;""");
 
         var scene = new Scene(borderPane);
         scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add("file:src/main/resources/assets/style.css");
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
@@ -82,16 +79,11 @@ public final class WeatherPI extends Application {
     private HBox addHBox() {
         var title = new Label("WeatherPI");
         title.setFont(new Font(26));
-        title.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-base: rgb(0, 0, 0);");
+        title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
 
         var hBox = new HBox();
         hBox.setPadding(new Insets(7.5, 6, 7.5, 6));
         hBox.setSpacing(10);
-        hBox.setStyle("""
-                -fx-background: rgb(0, 0, 0);
-                -fx-background-color: rgb(50, 68, 75);
-                -fx-background-radius: 90;
-                -fx-border-radius: 30;""");
         hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().add(title);
         return hBox;
@@ -100,7 +92,7 @@ public final class WeatherPI extends Application {
     private VBox addVBox() {
         var arduinos = new Label("Arduinos");
         arduinos.setFont(new Font(24));
-        arduinos.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-base: rgb(0, 0, 0);");
+        arduinos.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
 
         var vBox = new VBox(arduinos);
         vBox.setAlignment(Pos.CENTER);
@@ -110,12 +102,6 @@ public final class WeatherPI extends Application {
         var buttons = new Button[5];
         for (int i = 0; i < 5; i++) {
             buttons[i] = new Button("Arduino " + (i + 1));
-            buttons[i].setStyle("""
-                    -fx-text-fill: rgb(255, 255, 255);
-                        -fx-base: rgb(162, 0, 37);
-                        -fx-border-color: rgb(240, 163, 10);
-                        -fx-border-radius: 5;
-                        -fx-padding: 3 6 6 6;""");
             VBox.setMargin(buttons[i], new Insets(0, 0, 0, 8));
             vBox.getChildren().add(buttons[i]);
             final int id = i;
