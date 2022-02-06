@@ -5,6 +5,8 @@ This repository serves as a workspace.
 WeatherPI is a project that uses an Arduino Uno as the data collector, a RaspberryPi that serves as a base station,
 DHT22 sensors for the temperature + humidity, and NRF24L01 wireless modules for wireless communications.
 
+Contributors: [Fresh-glitch](https://github.com/Fresh-glitch)
+
 ## Resources
 
 - [Database (SQL)](src/main/resources/database.sql)
