@@ -36,7 +36,7 @@ public final class WeatherPI extends Application {
         try {
             connection = Database.getConnection();
         } catch (SQLException e) {
-            e.getLocalizedMessage();
+            e.printStackTrace();
         }
     }
 
@@ -180,7 +180,7 @@ public final class WeatherPI extends Application {
             while (resultSet.next())
                 stations.add(new Station(resultSet.getInt("id"), resultSet.getString("location"), resultSet.getDouble("temperature"), resultSet.getDouble("humidity")));
         } catch (SQLException e) {
-            e.getLocalizedMessage();
+            e.printStackTrace();
         }
         return stations;
     }
