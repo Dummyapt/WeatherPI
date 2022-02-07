@@ -63,17 +63,11 @@ public final class WeatherPI extends Application {
 
         var scene = new Scene(borderPane);
         scene.setFill(Color.TRANSPARENT);
-        scene.getStylesheets().add("file:src/main/resources/assets/style.css");
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.show();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        System.exit(-1);
     }
 
     private HBox addHBox() {
@@ -145,6 +139,7 @@ public final class WeatherPI extends Application {
         btnExit.setOnAction(e -> System.exit(0));
         btnExit.setMaxSize(325, 200);
         btnExit.setAlignment(Pos.CENTER);
+        btnExit.setOnAction(ae -> System.exit(-1));
 
         var vBox = new VBox();
         vBox.setPadding(new Insets(10));
@@ -174,9 +169,7 @@ public final class WeatherPI extends Application {
 
     private ObservableList<Station> getStations() {
         ObservableList<Station> stations = FXCollections.observableArrayList();
-        try {
-            var statement = connection.createStatement();
-            var resultSet = statement.executeQuery("SELECT * FROM v_monitoring;");
+        try (var resultSet = connection.createStatement().executeQuery("SELECT * FROM v_monitoring;")) {
             while (resultSet.next())
                 stations.add(new Station(resultSet.getInt("id"), resultSet.getString("location"), resultSet.getDouble("temperature"), resultSet.getDouble("humidity")));
         } catch (SQLException e) {
