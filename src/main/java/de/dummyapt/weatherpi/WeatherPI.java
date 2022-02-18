@@ -61,7 +61,7 @@ public final class WeatherPI extends Application {
                 -fx-border-width:5;
                 -fx-border-color: #FC3D44;""");
 
-        var scene = new Scene(borderPane);
+        final var scene = new Scene(borderPane);
         scene.setFill(Color.TRANSPARENT);
         scene.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
         stage.setScene(scene);
@@ -71,11 +71,11 @@ public final class WeatherPI extends Application {
     }
 
     private HBox addHBox() {
-        var title = new Label("WeatherPI");
+        final var title = new Label("WeatherPI");
         title.setFont(new Font(26));
         title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
 
-        var hBox = new HBox();
+        final var hBox = new HBox();
         hBox.setPadding(new Insets(7.5, 6, 7.5, 6));
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
@@ -84,16 +84,16 @@ public final class WeatherPI extends Application {
     }
 
     private VBox addVBox() {
-        var arduinos = new Label("Arduinos");
+        final var arduinos = new Label("Arduinos");
         arduinos.setFont(new Font(24));
         arduinos.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
 
-        var vBox = new VBox(arduinos);
+        final var vBox = new VBox(arduinos);
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(10));
         vBox.setSpacing(8);
 
-        var buttons = new Button[5];
+        final var buttons = new Button[5];
         for (int i = 0; i < 5; i++) {
             buttons[i] = new Button("Arduino " + (i + 1));
             VBox.setMargin(buttons[i], new Insets(0, 0, 0, 8));
@@ -106,20 +106,20 @@ public final class WeatherPI extends Application {
                     -fx-background-size: 1200 900;
                     -fx-background-color: rgb(50,50,50);""";
             buttons[i].setOnAction(ae -> {
-                var location = getStations().get(id).location();
-                var temperature = getStations().get(id).temperature();
-                var humidity = getStations().get(id).humidity();
+                final var location = getStations().get(id).location();
+                final var temperature = getStations().get(id).temperature();
+                final var humidity = getStations().get(id).humidity();
 
-                var lblLocation = new Label("Location:  " + location);
+                final var lblLocation = new Label("Location:  " + location);
                 lblLocation.setFont(new Font(19));
 
-                var lblTemp = new Label("Temperature: " + temperature + "°C");
+                final var lblTemp = new Label("Temperature: " + temperature + "°C");
                 lblTemp.setFont(new Font(19));
 
-                var lblHumid = new Label("Humidity: " + humidity + "%");
+                final var lblHumid = new Label("Humidity: " + humidity + "%");
                 lblHumid.setFont(new Font(19));
 
-                var flowPane = new FlowPane();
+                final var flowPane = new FlowPane();
                 flowPane.setPadding(new Insets(5, 0, 5, 0));
                 flowPane.setVgap(4);
                 flowPane.setHgap(8);
@@ -135,13 +135,13 @@ public final class WeatherPI extends Application {
     }
 
     private VBox addVBoxBottom() {
-        var btnExit = new Button("_Exit");
+        final var btnExit = new Button("_Exit");
         btnExit.setOnAction(e -> System.exit(0));
         btnExit.setMaxSize(325, 200);
         btnExit.setAlignment(Pos.CENTER);
         btnExit.setOnAction(ae -> System.exit(-1));
 
-        var vBox = new VBox();
+        final var vBox = new VBox();
         vBox.setPadding(new Insets(10));
         vBox.setSpacing(8);
         vBox.setAlignment(Pos.CENTER);
@@ -151,7 +151,7 @@ public final class WeatherPI extends Application {
     }
 
     private FlowPane addFlowPane() {
-        var flowPane = new FlowPane();
+        final var flowPane = new FlowPane();
         flowPane.setPadding(new Insets(5, 0, 5, 0));
         flowPane.setVgap(4);
         flowPane.setHgap(8);
@@ -168,7 +168,7 @@ public final class WeatherPI extends Application {
     }
 
     private ObservableList<Station> getStations() {
-        ObservableList<Station> stations = FXCollections.observableArrayList();
+        final ObservableList<Station> stations = FXCollections.observableArrayList();
         try (var resultSet = connection.createStatement().executeQuery("SELECT * FROM v_monitoring;")) {
             while (resultSet.next())
                 stations.add(new Station(resultSet.getInt("id"), resultSet.getString("location"), resultSet.getDouble("temperature"), resultSet.getDouble("humidity")));
