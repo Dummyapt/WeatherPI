@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS monitoring;
-DROP TABLE IF EXISTS arduino;
+DROP DATABASE IF EXISTS weatherpi;
+DROP TABLE IF EXISTS weatherpi.monitoring;
+DROP TABLE IF EXISTS weatherpi.arduino;
 DROP USER IF EXISTS weatherpi@localhost;
 DROP USER IF EXISTS java;
-DROP DATABASE IF EXISTS weatherpi;
 
 CREATE DATABASE IF NOT EXISTS weatherpi;
 USE weatherpi;
